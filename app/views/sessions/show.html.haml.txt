@@ -1,0 +1,47 @@
+.row
+  .span6
+    %h1
+      = @user.name
+      %small
+        = "@#{@user.screen_name}"
+    - unless @user.description.blank?
+      %h6
+        = @user.description
+  .span6
+    %table.table
+      %thead
+        %tr
+          %th
+            = t("th.tweets")
+          %th
+            = t("th.following")
+          %th
+            = t("th.followers")
+          %th
+            = t("th.favorites")
+      %tbody
+        %tr
+          %td
+            = number_with_delimiter @user.statuses_count
+          %td
+            = number_with_delimiter @user.friends_count
+          %td
+            = number_with_delimiter @user.followers_count
+          %td
+            = number_with_delimiter @user.favourites_count
+.row
+  .span10
+    - unless @user.status.blank?
+      %blockquote
+        %q{:cite => "https://twitter.com/#{@user.screen_name}/status/#{@user.status.id}"}
+          %p
+            = auto_link(@user.status.text).html_safe
+        %small
+          = t("time.ago", :time => time_ago_in_words(@user.status.created_at).capitalize)
+          = t("via.source", :source => @user.status.source).html_safe
+  .span2
+    = form_tag(signout_path, :method => 'delete') do
+      %fieldset
+        .form-actions
+          %button.btn.btn-danger#sign_out
+            = t("button.sign_out")
