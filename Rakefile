@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Socialtracker2::Application.load_tasks
+SignInWithTwitter::Application.load_tasks

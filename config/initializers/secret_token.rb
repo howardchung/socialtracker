@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Socialtracker2::Application.config.secret_token = '63c83bd9305d1fa3d192eabebc5e0a3da4ac3b8d600a2bf381be6cad98778a3a7fe901ce14109e5b0b28ca868d79dab9476451580af3a7178cb471b540c421e0'
+SignInWithTwitter::Application.config.secret_token = 'ff2d6c0d9edd8f7cedc2d2df25710f08ab212971fd3bcdefbfa73ab1b002f4096a7be6fdba5445d83f59212d093faa053c61ecefc5e26749bbb292e7466d705f'
