@@ -40,6 +40,11 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
+    haml (4.0.3)
+      tilt
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -52,6 +57,17 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.7)
+    multipart-post (1.2.0)
+    oauth (0.4.7)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (0.0.17)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -84,6 +100,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    simple_oauth (0.2.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -94,18 +111,32 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    twitter (4.8.1)
+      faraday (~> 0.8, < 0.10)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.2)
+    twitter-text (1.6.1)
+      unf (~> 0.0.5)
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unf (0.0.5)
+      unf_ext
+    unf_ext (0.0.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  haml
   jquery-rails
+  omniauth
+  omniauth-twitter
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
+  twitter
+  twitter-text
   uglifier (>= 1.0.3)
