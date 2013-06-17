@@ -1,0 +1,68 @@
+<div class='row'>
+<div class='span6'>
+<h1>
+      <%= @user.name%>
+<small>
+        <%= "@#{@user.screen_name}"%>
+</small>
+</h1>
+    <%unless @user.description.blank?%>
+      <h6>
+        <%= @user.description%>
+        </h6>
+        <%end%>
+</div>
+<div class='span6'>
+<table class='table'>
+<thead>
+<tr>
+<th>
+Tweets
+</th>
+<th>
+Following
+</th>
+<th>
+Followers
+</th>
+<th>
+Favorites
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+          <td>
+            <%= number_with_delimiter @user.statuses_count%>
+            </td>
+          <td>
+            <%= number_with_delimiter @user.friends_count%>
+                      </td>
+
+          <td>
+            <%= number_with_delimiter @user.followers_count%>
+                      </td>
+
+          <td>
+            <%= number_with_delimiter @user.favourites_count%>
+                      </td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class='row'>
+
+<div class='span2'>
+<% form_tag(signout_path, :method => 'delete') do%>
+<div class='form-actions'>
+<button class='btn btn-danger' id='sign_out'>
+           <% = t("button.sign_out")%>
+           </button>
+</div>
+<%end%>
+
+</div>
+</div>
