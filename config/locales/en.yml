@@ -1,9 +1,8 @@
 en:
   app:
     author: "Howard Chung"
-    description: "A Ruby on Rails application that demonstrates how to use the Sign in with Twitter workflow using the twitter gem and OmniAuth."
-    description_html: "A %{ruby_on_rails} application that demonstrates how to use the %{sign_in_with_twitter} workflow using the %{twitter_gem} and %{omniauth}."
-    name: "Sign in with Twitter"
+    description: "Keep track of your followers and friends!"
+    name: "Social Tracker"
   button:
     sign_in: "Sign in with Twitter"
     sign_out: "Sign out"
