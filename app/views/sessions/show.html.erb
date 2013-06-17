@@ -55,14 +55,13 @@ Favorites
 
 <div class='row'>
 
-<div class='span2'>
-<% form_tag(signout_path, :method => 'delete') do%>
+<%= form_tag(signout_path, :method => 'delete') do%>
+<fieldset>
 <div class='form-actions'>
 <button class='btn btn-danger' id='sign_out'>
            <%= t("button.sign_out")%>
            </button>
 </div>
+</fieldset>
 <%end%>
-
-</div>
 </div>
