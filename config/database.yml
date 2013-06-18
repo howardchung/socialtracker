@@ -1,4 +1,4 @@
-development
+development:
   adapter: postgresql
   encoding: utf8
   database: d79rcco6km5fni
