@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         #each follower record consists of a user id, and then the id of the user following them.
         @savedrecords=Follower.where(:userid=>@user.id)
 
-        @currentfollowers=Twitter.followers
+        @=currentfollowers=Twitter.followers
         @currentids=currentfollowers.map {|follower| follower.id }
         @savedids=@savedrecords.map {|record| record.followerid }
 
