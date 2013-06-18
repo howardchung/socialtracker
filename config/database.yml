@@ -1,6 +1,5 @@
-development:
+
   adapter: postgresql
-  encoding: utf-8
   pool: 5
   database: d79rcco6km5fni
   username: qrcbvngsucryjg
