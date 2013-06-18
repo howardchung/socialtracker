@@ -7,7 +7,7 @@ class DataController < ApplicationController
       	f.userid=params[:userid]
       	f.username=params[:username]
 		f.followerid=followerid
-		f.followername=Twitter.user(followerid).name
+		f.followername=Twitter.user(followerid.to_i).name
       end
     end
     redirect_to :back

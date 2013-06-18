@@ -21,10 +21,13 @@ class SessionsController < ApplicationController
           )
 
         #each follower record consists of a user id, and then the id of the user following them.
-        @savedrecords=Follower.where(:userid=>@user.id)
+        @savedrecords=Follower.where(:userid=>@user.id.to_s)
+
+        friends=Twitter.friends
+        @friendids=friends.map {|friend| friend.id.to_s }
 
         currentfollowers=Twitter.followers
-        @currentids=currentfollowers.map {|follower| follower.id_str }
+        @currentids=currentfollowers.map {|follower| follower.id.to_s }
         @savedids=@savedrecords.map {|record| record.followerid }
 
         #get difference, new followers
@@ -32,6 +35,12 @@ class SessionsController < ApplicationController
 
         #get difference, no longer followers
         @nolongerfollowers=@savedids-@currentids
+
+        #friends who don't follow user
+        @nonfollowingfriends=@friendids-@currentids
+
+        #friends that aren't followed by user
+        @nonfollowedfriends=@currentids-@friendids
 
     else
       redirect_to failure_path
