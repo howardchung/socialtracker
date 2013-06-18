@@ -3,5 +3,5 @@ time timestamp NOT NULL,
 userid bigint NOT NULL,
 followerid bigint NOT NULL,
 username varchar(255),
-followername varchar(255),
+followername varchar(255)
 );
