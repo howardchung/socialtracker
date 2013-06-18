@@ -90,5 +90,6 @@ end
       if session['access_token'] && session['access_secret']
     redirect_to :action=>"show"
   end
+end
 
 end
