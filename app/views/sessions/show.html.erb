@@ -6,7 +6,10 @@
         <%= "@#{@user.screen_name}"%>
 </small>
 </h1>
-<img src="<%=@user.profile_image_url(size = :bigger)%>" class="img-rounded">
+<img src="<%=@user.profile_image_url(size = :original)%>" class="img-rounded">
+<h6>
+  Tweetin' for <%=seconds_to_units(Time.now-Time.parse(@user.created_at))%>
+  </h6>
 </div>
 </div>
 
@@ -25,7 +28,7 @@ Following
 Followers
 </th>
 <th>
-Favorites
+Favorited Tweets
 </th>
 </tr>
 </thead>

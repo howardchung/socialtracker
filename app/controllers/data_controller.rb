@@ -7,8 +7,7 @@ class DataController < ApplicationController
       	f.userid=params[:userid]
       	f.username=params[:username]
 		f.followerid=followerid
-		#TODO find a better way to get names?
-		#f.followername=Twitter.user(followerid).name
+		f.followername=Twitter.user(followerid).name
       end
     end
     redirect_to :back

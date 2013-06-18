@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         @savedrecords=Follower.where(:userid=>@user.id)
 
         currentfollowers=Twitter.followers
-        @currentids=currentfollowers.map {|follower| follower.id }
+        @currentids=currentfollowers.map {|follower| follower.id_str }
         @savedids=@savedrecords.map {|record| record.followerid }
 
         #get difference, new followers
