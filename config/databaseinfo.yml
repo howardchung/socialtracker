@@ -1,7 +1,0 @@
-adapter: postgresql
-encoding: utf8
-database: d79rcco6km5fni
-pool: 5
-username: qrcbvngsucryjg
-password: iNwOAXNyk0KurrBt9hwyxd_x_D
-host: ec2-23-21-91-97.compute-1.amazonaws.com
