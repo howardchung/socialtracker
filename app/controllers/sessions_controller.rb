@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+
   def create
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_secret] = request.env['omniauth.auth']['credentials']['secret']
@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     if session['access_token'] && session['access_secret']
       @user = client.user(include_entities: true)
 
-        require 'erb'
         dbconfig = YAML.load(ERB.new(File.read('config/database.yml')).result)
         ActiveRecord::Base.establish_connection(dbconfig)
         #each follower record consists of a user id, and then the id of the user following them.

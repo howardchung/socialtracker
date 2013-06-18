@@ -1,6 +1,7 @@
-development:
+
   adapter: postgresql
-  encoding: utf8
+  pool: 5
+  timeout: 5000
   database: d79rcco6km5fni
   username: qrcbvngsucryjg
   password: iNwOAXNyk0KurrBt9hwyxd_x_D
