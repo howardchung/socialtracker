@@ -37,4 +37,6 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+*.ignore
+
 database.yml

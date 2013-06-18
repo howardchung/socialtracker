@@ -11,8 +11,14 @@ class SessionsController < ApplicationController
       @user = client.user(include_entities: true)
 
         dbconfig = YAML.load(ERB.new(File.read('config/database.yml')).result)
-        puts dbconfig
-        ActiveRecord::Base.establish_connection(dbconfig)
+        ActiveRecord::Base.establish_connection(
+          :adapter=> "postgresql",
+          :pool=> 5,
+          :database=> "d79rcco6km5fni",
+          :username=> "qrcbvngsucryjg",
+          :password=> ENV["DB_PASSWORD"],
+          :host=> "ec2-23-21-91-97.compute-1.amazonaws.com"
+          )
 
         #each follower record consists of a user id, and then the id of the user following them.
         @savedrecords=Follower.where(:userid=>@user.id)
