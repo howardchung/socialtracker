@@ -12,12 +12,12 @@ class SessionsController < ApplicationController
     if session['access_token'] && session['access_secret']
       @user = client.user(include_entities: true)
 
-        dbconfig = YAML::load(File.open('config/database.yml'))
+        dbconfig = YAML::load(File.open('config/databaseinfo.yml'))
         ActiveRecord::Base.establish_connection(dbconfig)
         #each follower record consists of a user id, and then the id of the user following them.
         @savedrecords=Follower.where(:userid=>@user.id)
 
-        currentfollowers=Twitter.followers
+        @currentfollowers=Twitter.followers
         @currentids=currentfollowers.map {|follower| follower.id }
         @savedids=@savedrecords.map {|record| record.followerid }
 
