@@ -86,4 +86,9 @@ end
     redirect_to root_path, notice: "Signed out"
   end
 
+  def index
+      if session['access_token'] && session['access_secret']
+    redirect_to :action=>"show"
+  end
+
 end
