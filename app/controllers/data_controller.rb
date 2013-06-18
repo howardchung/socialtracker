@@ -2,10 +2,12 @@ class DataController < ApplicationController
   
   def save
     Follower.where(:userid=>params[:userid]).delete_all
-    JSON.parse(params[:currentids]).each do |id|
+    JSON.parse(params[:currentids]).each do |followerid|
       Follower.create(:time => Time.now) do |f|
       	f.userid=params[:userid]
-		f.followerid=id
+      	f.username=params[:username]
+		f.followerid=followerid
+		f.followername=Twitter.user(followerid).name
       end
     end
     redirect_to :back

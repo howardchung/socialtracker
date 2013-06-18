@@ -1,7 +1,7 @@
 CREATE TABLE followers ( 
 time timestamp NOT NULL,
-userid bigint NOT NULL,
-followerid bigint NOT NULL,
+userid int NOT NULL,
+followerid int NOT NULL,
 username varchar(255),
 followername varchar(255)
 );

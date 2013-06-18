@@ -62,7 +62,7 @@ New Followers
 begin%>
 <tr>
 <td>
-  <%=Twitter.user(id.to_i).name%>
+  <%=Twitter.user(id).name%>
 </td>
 </tr>
 
@@ -92,7 +92,7 @@ No Longer Followers
 begin%>
 <tr>
 <td>
-  <%=Twitter.user(id.to_i).name%>
+  <%=Twitter.user(id).name%>
 </td>
 </tr>
 
@@ -110,9 +110,10 @@ end
 </table>
 
 <%=form_tag url_for(:controller=>"data", :action=>"save") do |f|%>
-          <%=hidden_field_tag "userid", @user.id.to_s%>
+          <%=hidden_field_tag "userid", @user.id%>
+          <%=hidden_field_tag "username", @user.name%>
           <%=hidden_field_tag "currentids", @currentids.to_json%>
-   <%=submit_tag "Save to Database", :class=>"btn btn-success"%>
+   <%=submit_tag "Okay, I saw this.  I want to update the database.", :class=>"btn btn-success"%>
    <%end%>
 
 </div>

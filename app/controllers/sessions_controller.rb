@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-require 'active_record'
-require 'yaml'
+
+
 
   def create
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
@@ -15,11 +15,10 @@ require 'yaml'
         dbconfig = YAML::load(File.open('config/database.yml'))
         ActiveRecord::Base.establish_connection(dbconfig)
         #each follower record consists of a user id, and then the id of the user following them.
-        @savedrecords=Follower.where(:userid=>@user.id.to_s)
+        @savedrecords=Follower.where(:userid=>@user.id)
 
         currentfollowers=Twitter.followers
-        @currentids=currentfollowers.map {|follower| follower.id.to_s }
-
+        @currentids=currentfollowers.map {|follower| follower.id }
         @savedids=@savedrecords.map {|record| record.followerid }
 
         #get difference, new followers
@@ -33,14 +32,6 @@ require 'yaml'
     end
   end
 
-  def savedata
-    Follower.destroy_all(:userid => @user.id.to_s)
-    @currentids.each do |id|
-      Follower.create(:userid => @user.id.to_s, :followerid=>id)
-    end
-    redirect_to :back
-  end
-
   def error
     flash[:error] = "Sign in with Twitter failed"
     redirect_to root_path
@@ -51,7 +42,4 @@ require 'yaml'
     redirect_to root_path, notice: "Signed out"
   end
 
-end
-
-class Follower < ActiveRecord::Base
 end
