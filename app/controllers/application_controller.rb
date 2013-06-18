@@ -12,4 +12,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  class Follower < ActiveRecord::Base
+end
+
 end

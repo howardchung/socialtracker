@@ -6,14 +6,13 @@
         <%= "@#{@user.screen_name}"%>
 </small>
 </h1>
-    <%unless @user.description.blank?%>
-      <h6>
-        <%= @user.description%>
-        </h6>
-        <%end%>
+<img src="<%=@user.profile_image_url(size = :bigger)%>" class="img-rounded">
 </div>
+</div>
+
+<div class='row'>
 <div class='span6'>
-<table class='table'>
+<table class='table table-bordered table-striped'>
 <thead>
 <tr>
 <th>
@@ -32,36 +31,97 @@ Favorites
 </thead>
 <tbody>
 <tr>
-          <td>
-            <%= number_with_delimiter @user.statuses_count%>
-            </td>
-          <td>
-            <%= number_with_delimiter @user.friends_count%>
-                      </td>
-
-          <td>
-            <%= number_with_delimiter @user.followers_count%>
-                      </td>
-
-          <td>
-            <%= number_with_delimiter @user.favourites_count%>
-                      </td>
-
+<td>
+<%= number_with_delimiter @user.statuses_count%>
+</td>
+<td>
+<%= number_with_delimiter @user.friends_count%>
+</td>
+<td>
+<%= number_with_delimiter @user.followers_count%>
+</td>
+<td>
+<%= number_with_delimiter @user.favourites_count%>
+</td>
 </tr>
 </tbody>
 </table>
+
+
+
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>
+New Followers
+</th>
+</thead>
+<tbody>
+<%
+@newfollowers.each do |id|
+begin%>
+<tr>
+<td>
+  <%=Twitter.user(id.to_i).name%>
+</td>
+</tr>
+
+<%rescue%>
+  Deleted User
+</td>
+</tr>
+<%
+next
+end
+
+end
+%>
+</tbody>
+</table>
+
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>
+No Longer Followers
+</th>
+</thead>
+<tbody>
+<%
+@nolongerfollowers.each do |id|
+begin%>
+<tr>
+<td>
+  <%=Twitter.user(id.to_i).name%>
+</td>
+</tr>
+
+<%rescue%>
+  Deleted User
+</td>
+</tr>
+<%
+next
+end
+
+end
+%>
+</tbody>
+</table>
+
+<%=form_tag url_for(:controller=>"data", :action=>"save") do |f|%>
+          <%=hidden_field_tag "userid", @user.id.to_s%>
+          <%=hidden_field_tag "currentids", @currentids.to_json%>
+   <%=submit_tag "Save to Database", :class=>"btn btn-success"%>
+   <%end%>
+
 </div>
 </div>
 
-<div class='row'>
-
+<div class="row">
 <%= form_tag(signout_path, :method => 'delete') do%>
-<fieldset>
-<div class='form-actions'>
 <button class='btn btn-danger' id='sign_out'>
            <%= t("button.sign_out")%>
            </button>
-</div>
-</fieldset>
 <%end%>
 </div>

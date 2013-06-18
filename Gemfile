@@ -9,6 +9,8 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
 
+gem 'pg'
+
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
