@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 
         dbconfig = YAML.load(ERB.new(File.read('config/database.yml')).result)
         ActiveRecord::Base.establish_connection(dbconfig)
+        
         #each follower record consists of a user id, and then the id of the user following them.
         @savedrecords=Follower.where(:userid=>@user.id)
 
