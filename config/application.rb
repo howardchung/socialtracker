@@ -62,5 +62,3 @@ module SignInWithTwitter
     config.assets.version = '1.0'
   end
 end
-
-config.assets.initialize_on_precompile = false
