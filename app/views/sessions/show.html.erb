@@ -50,128 +50,35 @@ Favorited Tweets
 </tbody>
 </table>
 
-
+<%@datahash.each do |key, value|%>
 
 <table class='table table-bordered table-striped'>
 <thead>
 <tr>
 <th>
-New Followers
+<%=key%>
 </th>
 </thead>
 <tbody>
 <%
-@newfollowers.each do |id|
-  user=Twitter.user(id.to_i)
-  %>
+value.each do |id, name|%>
 <tr>
 <td>
-  <a href="http://twitter.com/account/redirect_by_id?id=<%=id.to_s%>"><img src="<%=user.profile_image_url(size = :mini)%>" class="img-rounded">
-<%=user.name%></a>
+  <a href="http://twitter.com/account/redirect_by_id?id=<%=id%>"><%=name%></a>
 </td>
 </tr>
 <%end%>
 </tbody>
 </table>
-
-<table class='table table-bordered table-striped'>
-<thead>
-<tr>
-<th>
-No Longer Followers
-</th>
-</thead>
-<tbody>
-<%
-@nolongerfollowers.each do |id|
-begin
-  user=Twitter.user(id.to_i)
-  %>
-<tr>
-<td>
-  <a href="http://twitter.com/account/redirect_by_id?id=<%=id.to_s%>"><img src="<%=user.profile_image_url(size = :mini)%>" class="img-rounded">
-<%=user.name%></a>
-</td>
-</tr>
-<tr>
-<td>
-  <a href="http://twitter.com/account/redirect_by_id?id=<%=id.to_s%>"><%=Twitter.user(id.to_i).name%></a>
-</td>
-</tr>
-
-<%rescue%>
-<tr>
-<td>
-  <%=@savedrecords[@savedrecords.index{|record|record.followerid==id.to_s}].name+" (deleted)"%>
-</td>
-</tr>
-<%
-next
-end
-
-end
-%>
-</tbody>
-</table>
-
-<table class='table table-bordered table-striped'>
-<thead>
-<tr>
-<th>
-Friends who don't follow you
-</th>
-</thead>
-<tbody>
-<%
-@nonfollowingfriends.each do |id|
-  user=Twitter.user(id.to_i)
-  %>
-<tr>
-<td>
-  <a href="http://twitter.com/account/redirect_by_id?id=<%=id.to_s%>"><img src="<%=user.profile_image_url(size = :mini)%>" class="img-rounded">
-<%=user.name%></a>
-</td>
-</tr>
 <%end%>
-</tbody>
-</table>
 
-<table class='table table-bordered table-striped'>
-<thead>
-<tr>
-<th>
-Friends who you don't follow
-</th>
-</thead>
-<tbody>
-<%
-@nonfollowedfriends.each do |id|
-   user=Twitter.user(id.to_i)
-  %>
-<tr>
-<td>
-  <a href="http://twitter.com/account/redirect_by_id?id=<%=id.to_s%>"><img src="<%=user.profile_image_url(size = :mini)%>" class="img-rounded">
-<%=user.name%></a>
-</td>
-</tr>
-<%end%>
-</tbody>
-</table>
 
-<%=form_tag url_for(:controller=>"data", :action=>"save") do |f|%>
-          <%=hidden_field_tag "userid", @user.id.to_s%>
-          <%=hidden_field_tag "username", @user.name%>
-          <%=hidden_field_tag "currentids", @currentids.to_json%>
-          <div class='form-actions'>
-          <p class="help-block">
-This button will put your current list of friends in the database.  You won't be able to see the no longer following friends again.
+</div>
+</div>
+
+<p class="muted">
+Current list of followers saved to database!  You won't be able to see the new and no longer following friends again.
 </p>
-   <%=submit_tag "Okay, I saw this.  I want to update the database.", :class=>"btn btn-success"%>
- </div>
-   <%end%>
-
-</div>
-</div>
 
 <div class="row">
 <%= form_tag(signout_path, :method => 'delete') do%>

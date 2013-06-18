@@ -20,27 +20,56 @@ class SessionsController < ApplicationController
           :host=> "ec2-23-21-91-97.compute-1.amazonaws.com"
           )
 
+        @currentfollowers=Twitter.followers
+        @currentfriends=Twitter.friends
+
         #each follower record consists of a user id, and then the id of the user following them.
         @savedrecords=Follower.where(:userid=>@user.id.to_s)
 
-        friends=Twitter.friends
-        @friendids=friends.map {|friend| friend.id.to_s }
+        #followers follow the user, followees are followed by user
+        followers={}
+        saved={}
+        followees={}
+        @currentfollowers.each do |follower|
+          followers[follower.id.to_s]=follower.name
+        end
 
-        currentfollowers=Twitter.followers
-        @currentids=currentfollowers.map {|follower| follower.id.to_s }
-        @savedids=@savedrecords.map {|record| record.followerid }
+        @savedrecords.each do |record|
+          saved[record.followerid]=record.followername
+        end
+
+        @currentfriends.each do |friend|
+          followees[friend.id.to_s]=friend.name
+        end
+
+        #create hash of tables to build
+        @datahash={}
 
         #get difference, new followers
-        @newfollowers=@currentids-@savedids
+        @datahash["New followers"]=followers.select {|key,value| (followers.keys-saved.keys).include?(key) }
 
         #get difference, no longer followers
-        @nolongerfollowers=@savedids-@currentids
+        @datahash["No longer followers"]=saved.select {|key,value| (saved.keys-followers.keys).include?(key) }
 
         #friends who don't follow user
-        @nonfollowingfriends=@friendids-@currentids
+        @datahash["Friends not following you"]=followees.select {|key,value| (followees.keys-followers.keys).include?(key) }
 
-        #friends that aren't followed by user
-        @nonfollowedfriends=@currentids-@friendids
+        #friends who aren't followed by user
+        @datahash["Friends you don't follow"]=followers.select {|key,value| (followers.keys-followees.keys).include?(key) }
+
+#update the database
+@datahash["No longer followers"].each do |key,value|
+ Follower.where(:followerid=>key).delete_all
+end
+
+@datahash["New followers"].each do |key, value|
+    Follower.create(:time => Time.now) do |f|
+        f.userid=@user.id.to_s
+        f.username=@user.name
+        f.followerid=key
+        f.followername=value
+      end
+    end
 
     else
       redirect_to failure_path
