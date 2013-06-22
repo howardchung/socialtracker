@@ -1,0 +1,70 @@
+<script type="text/javascript">
+if (window.location.href.indexOf('#_=_') > 0) {
+    window.location = window.location.href.replace(/#.*/, '');
+}
+</script>
+<div class='row'>
+<div class='span6'>
+<h1>
+      <%= @user["name"]%>
+</h1>
+<img src="<%='http://graph.facebook.com/'+@user["id"]+'/picture?type=large'%>" class="img-rounded">
+<h6>
+<%= @user["bio"]%>  </h6>
+</div>
+</div>
+
+<div class='row'>
+<div class='span6'>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>
+Friends
+</th>
+<th>
+Likes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<%= number_with_delimiter @currentfriends.length%>
+</td>
+<td>
+<%= number_with_delimiter @likes.length%>
+</td>
+</tr>
+</tbody>
+</table>
+
+<%@datahash.each do |key, value|%>
+
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>
+<%=key+" ("+value.length.to_s+")"%>
+</th>
+</thead>
+<tbody>
+<%
+value.each do |id, name|%>
+<tr>
+<td>
+  <a href="http://facebook.com/<%=id%>"><img src="http://graph.facebook.com/<%=id%>/picture?type=square"/> <%=name%></a>
+</td>
+</tr>
+<%end%>
+</tbody>
+</table>
+<%end%>
+
+
+</div>
+</div>
+
+<p class="muted">
+Current list of friends saved to database!  You won't be able to see the new and no longer following friends again.
+</p>

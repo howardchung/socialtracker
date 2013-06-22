@@ -9,6 +9,8 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
 
+gem 'koala'
+
 gem 'pg'
 
 group :assets do

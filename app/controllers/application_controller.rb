@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 require 'active_record'
+ActiveRecord::Base.establish_connection(
+          :adapter=> "postgresql",
+          :pool=> 5,
+          :database=> "d79rcco6km5fni",
+          :username=> "qrcbvngsucryjg",
+          :password=> ENV["DB_PASSWORD"],
+          :host=> "ec2-23-21-91-97.compute-1.amazonaws.com"
+          )
 
   private
   def client
@@ -20,9 +28,17 @@ def seconds_to_units(seconds)
       result
     }
 end
-  helper_method :seconds_to_units
+
+def fbauth
+  @oauth = Koala::Facebook::OAuth.new(ENV["FB_APP_ID"], ENV["FB_APP_SECRET"], url_for(:controller=>"facebook", :action=>"getToken"))
+end
+  helper_method :seconds_to_units, :fbauth
 
 end
 
 class Follower < ActiveRecord::Base
+
+end
+
+class FBFriend < ActiveRecord::Base
 end

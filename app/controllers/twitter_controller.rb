@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class TwitterController < ApplicationController
 
   def create
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
@@ -7,18 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def show
+
     if session['access_token'] && session['access_secret']
       @user = client.user(include_entities: true)
-
-        dbconfig = YAML.load(ERB.new(File.read('config/database.yml')).result)
-        ActiveRecord::Base.establish_connection(
-          :adapter=> "postgresql",
-          :pool=> 5,
-          :database=> "d79rcco6km5fni",
-          :username=> "qrcbvngsucryjg",
-          :password=> ENV["DB_PASSWORD"],
-          :host=> "ec2-23-21-91-97.compute-1.amazonaws.com"
-          )
 
         @currentfollowers=Twitter.followers
         @currentfriends=Twitter.friends
@@ -57,11 +48,14 @@ class SessionsController < ApplicationController
         #friends who aren't followed by user
         @datahash["Friends you don't follow"]=followers.select {|key,value| (followers.keys-followees.keys).include?(key) }
 
+#TODO won't update names in database if user changes them
 #update the database
+#remove no longer friends
 @datahash["No longer followers"].each do |key,value|
  Follower.where(:followerid=>key).delete_all
 end
 
+#add new friends
 @datahash["New followers"].each do |key, value|
     Follower.create(:time => Time.now) do |f|
         f.userid=@user.id.to_s
@@ -85,11 +79,5 @@ end
     reset_session
     redirect_to root_path, notice: "Signed out"
   end
-
-  def index
-      if session['access_token'] && session['access_secret']
-    redirect_to :action=>"show"
-  end
-end
 
 end

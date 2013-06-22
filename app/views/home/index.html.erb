@@ -7,11 +7,14 @@
 </legend>
 <div class='form-actions'>
 <p class="help-block">
-            <%= t("help.sign_in")%>
+Authenticate with a social network:
 </p>
-<button class='btn btn-large btn-primary'>
-            <%= t("button.sign_in")%>
-</button>
+<p id="twitterlogin">
+<%=image_submit_tag("sign-in-with-twitter.png", :style=>"width:200px;") %>
+</p>
+<p id="fblogin">
+	<a href="<%=fbauth.url_for_oauth_code%>">Login to Facebook</a>
+</p>
 </div>
 </fieldset>
             <%end%>

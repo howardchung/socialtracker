@@ -1,7 +1,19 @@
+twitter table:
+
 CREATE TABLE followers ( 
 time timestamp NOT NULL,
 userid varchar(255) NOT NULL,
 followerid varchar(255) NOT NULL,
 username varchar(255),
 followername varchar(255)
+);
+
+facebook table:
+
+CREATE TABLE fb_friends ( 
+time timestamp NOT NULL,
+userid varchar(255) NOT NULL,
+friendid varchar(255) NOT NULL,
+username varchar(255),
+friendname varchar(255)
 );
