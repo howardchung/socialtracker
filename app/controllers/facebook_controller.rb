@@ -44,8 +44,8 @@ end
     FBFriend.create(:time => Time.now) do |f|
  		f.userid=@user["id"].to_s
         f.username=@user["name"]
-        f.followerid=key
-        f.followername=value
+        f.friendid=key
+        f.friendname=value
       end
     end
 
@@ -56,7 +56,4 @@ session[:fbtoken]=fbauth.get_access_token(params[:code])
 redirect_to :action=>"show"
 end
 
-end
-
-class FBFriend < ActiveRecord::Base
 end
