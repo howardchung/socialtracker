@@ -2,6 +2,6 @@
 
 A Rails application for keeping track of social networking friends.
 
-Currently Twitter is supported, Facebook support may be coming.
+Twitter and Facebook are supported.
 
 http://socialtracker.herokuapp.com
