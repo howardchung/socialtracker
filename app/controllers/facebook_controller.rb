@@ -35,7 +35,7 @@ end
 #update the database
 #remove no longer friends
 @datahash["No longer friends"].each do |key,value|
-FBFriend.where(:userid=>@user["id"].to_s).delete_all
+FBFriend.where(:friendid=>key).delete_all
 end
 
 #add new friends
