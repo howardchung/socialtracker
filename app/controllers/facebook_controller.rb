@@ -40,7 +40,7 @@ end
 
 #add new friends
 @datahash["New friends"].each do |key, value|
-    Follower.create(:time => Time.now) do |f|
+    FBFriend.create(:time => Time.now) do |f|
  		f.userid=@user["id"].to_s
         f.username=@user["name"]
         f.followerid=key
@@ -55,6 +55,7 @@ session[:fbtoken]=fbauth.get_access_token(params[:code])
 redirect_to :action=>"show"
 end
 
+end
 
-
+class FBFriend < ActiveRecord::Base
 end
