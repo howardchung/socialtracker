@@ -52,7 +52,7 @@ class TwitterController < ApplicationController
 #update the database
 #remove no longer friends
 @datahash["No longer followers"].each do |key,value|
- Follower.where(:followerid=>key).delete_all
+ Follower.where(:userid=>@user.id.to_s).where(:followerid=>key).delete_all
 end
 
 #add new friends
