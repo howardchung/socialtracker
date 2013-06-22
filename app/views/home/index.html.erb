@@ -1,22 +1,25 @@
-<div class="row">
-    <%= form_tag "/auth/twitter", :method => "get", :html => {:class => "form-horizontal"} do%>
 
-<fieldset>
+
+<div class="row" style="text-align:center;">
+<%= form_tag "/auth/twitter", :method => "get", :html => {:class => "form-horizontal"} do%>
 <legend>
-            <%= t("app.description")%>
+Did someone unfollow or unfriend you?  Keep track of your social networks with this app.
 </legend>
-<div class='form-actions'>
+
+<div class='form-actions' style="width:30%;margin:auto;"> 
 <p class="help-block">
 Authenticate with a social network:
 </p>
+
 <p id="twitterlogin">
 <%=image_submit_tag("twitter_signin.png") %>
 </p>
+
 <p id="fblogin">
 	<a href="<%=fbauth.url_for_oauth_code%>"><%=image_tag("facebook_signin.png")%></a>
 </p>
 </div>
-</fieldset>
-            <%end%>
+<%end%>
+
 </div>
 
