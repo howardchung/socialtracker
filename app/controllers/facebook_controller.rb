@@ -2,6 +2,7 @@ class FacebookController < ApplicationController
 
 def show
 
+#TODO expired access tokens?
 @token=session[:fbtoken]
 
 #get data from API

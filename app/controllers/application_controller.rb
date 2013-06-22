@@ -36,9 +36,8 @@ end
 
 end
 
-class Follower < ActiveRecord::Base
-
+class FBFriend < ActiveRecord::Base
 end
 
-class FBFriend < ActiveRecord::Base
+class Follower < ActiveRecord::Base
 end
