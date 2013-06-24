@@ -48,7 +48,7 @@ class TwitterController < ApplicationController
         #friends who aren't followed by user
         @datahash["Friends you don't follow"]=followers.select {|key,value| (followers.keys-followees.keys).include?(key) }
 
-#TODO won't update names in database if user changes them
+    #TODO won't update names in database if user changes them
 #update the database
 #remove no longer friends
 @datahash["No longer followers"].each do |key,value|
@@ -64,7 +64,7 @@ end
         f.followername=value
       end
     end
-
+        ActiveRecord::Base.connection.close
     else
       redirect_to failure_path
     end

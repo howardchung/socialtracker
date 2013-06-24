@@ -6,4 +6,6 @@ SignInWithTwitter::Application.routes.draw do
   delete '/signout', to: 'twitter#destroy', as: 'signout'
   get 'facebook/profile', to:'facebook#show'
   get 'facebook/getToken'
+  get 'facebook/update'
+  get 'twitter/update'
 end
