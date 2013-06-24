@@ -32,6 +32,12 @@ end
 #get difference, no longer
 @datahash["No longer friends"]=saved.select {|key,value| (saved.keys-friends.keys).include?(key) }
 
+session[:fbdata]=@datahash
+end
+
+def update
+
+@datahash=session[:fbdata]
 #TODO won't update names in database if user changes them
 #update the database
 #remove no longer friends

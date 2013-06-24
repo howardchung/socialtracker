@@ -23,6 +23,9 @@ if (window.location.href.indexOf('#_=_') > 0) {
 Friends
 </th>
 <th>
+Saved Friends
+</th>
+<th>
 Likes
 </th>
 </tr>
@@ -31,6 +34,9 @@ Likes
 <tr>
 <td>
 <%= number_with_delimiter @currentfriends.length%>
+</td>
+<td>
+<%= number_with_delimiter @savedrecords.length%>
 </td>
 <td>
 <%= number_with_delimiter @likes.length%>
@@ -49,11 +55,10 @@ Likes
 </th>
 </thead>
 <tbody>
-<%
-value.each do |id, name|%>
+<%value.each do |id, name|%>
 <tr>
 <td>
-  <a href="http://facebook.com/<%=id%>"><img src="http://graph.facebook.com/<%=id%>/picture?type=square"/> <%=name%></a>
+  <a href="http://facebook.com/<%=id%>"><img src="http://graph.facebook.com/<%=id%>/picture"/> <%=name%></a>
 </td>
 </tr>
 <%end%>
@@ -65,6 +70,4 @@ value.each do |id, name|%>
 </div>
 </div>
 
-<p class="muted">
-Current list of friends saved to database!  You won't be able to see the new and no longer following friends again.
-</p>
+<%=link_to "Update", :action=>"update"%>
