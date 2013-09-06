@@ -11,5 +11,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
-//= require tooltip
-//= require popover
+//= require tooltip.js
+//= require popover.js
