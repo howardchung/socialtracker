@@ -14,8 +14,8 @@
    <%= stylesheet_link_tag "application"%>
     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"%>
    <%= javascript_include_tag "application"%>
-      <%= javascript_include_tag "tooltip.js"%>
-   <%= javascript_include_tag "popover.js"%>
+   <%= javascript_include_tag "tooltip"%>
+   <%= javascript_include_tag "popover"%>
 
 <script>
       $(function (){
@@ -26,29 +26,21 @@
 </head>
 
 <body>
-<a class='sash' href='https://github.com/howardc93/socialtracker'>
-<%= image_tag("fork-me-on-github.png", :id => "sash")%>
-</a>
-<div class='navbar navbar-fixed-top'>
-<div class='navbar-inner'>
-<div class='container'>
-<a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
-<span class='icon-bar'></span>
-<span class='icon-bar'></span>
-<span class='icon-bar'></span>
-</a>
-<a href="/" class="brand">Social Tracker</a>
-<div class='nav-collapse'></div>
-</div>
-</div>
-</div>
-<div class='container'>
+      <div class='container'>
+
+<div class="header">
+        <h3 class="text-muted">Social Tracker</h3>
+      </div>
+
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <%=yield%>
 <footer>
 <p>
  <%= "&copy; #{Date.today.year} #{t("app.author")}.".html_safe%>
- </p>
-            <a href="#" id="howdoesitwork" class="btn btn-success" rel="popover" data-content="This app fetches a list of your Facebook/Twitter friends and saves them.  The next time you log in, it compares your current list with the saved list in order to determine who is no longer your friend/follower.">How does it work?</a>
+
+            <a href="#" id="howdoesitwork" rel="popover" data-content="This app fetches a list of your Facebook/Twitter friends and saves them.  The next time you log in, it compares your current list with the saved list in order to determine who is no longer your friend/follower.">How does it work?
+            </a>
+</p>
 
 </footer>
 </div>
