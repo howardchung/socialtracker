@@ -18,15 +18,9 @@
    <%= javascript_include_tag "popover.js"%>
 
 <script>
-$(document).ready(function() {
-    $("#howdoesitwork").popover({
-            placement: 'bottom',
-            html: 'true',
-            title : '<span class="text-info"><strong>title</strong></span>'+
-                    '<button type="button" id="close" class="close" onclick="$(&quot;#example&quot;).popover(&quot;hide&quot;);">&times;</button>',
-            content : 'test'
-    });
-});
+      $(function (){
+         $("#howdoesitwork").popover();
+      });
 </script>
 
 </head>
@@ -54,7 +48,7 @@ $(document).ready(function() {
 <p>
  <%= "&copy; #{Date.today.year} #{t("app.author")}.".html_safe%>
  </p>
- <button type="button" id="howdoesitwork" class="btn btn-primary">How does it work?</button>
+            <a href="#" id="howdoesitwork" class="btn btn-success" rel="popover" data-content="This app fetches a list of your Facebook/Twitter friends and saves them.  The next time you log in, it compares your current list with the saved list in order to determine who is no longer your friend/follower.">How does it work?</a>
 
 </footer>
 </div>
