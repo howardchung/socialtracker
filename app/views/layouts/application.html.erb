@@ -14,6 +14,21 @@
    <%= stylesheet_link_tag "application"%>
     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"%>
    <%= javascript_include_tag "application"%>
+      <%= javascript_include_tag "tooltip.js"%>
+   <%= javascript_include_tag "popover.js"%>
+
+<script>
+$(document).ready(function() {
+    $("#howdoesitwork").popover({
+            placement: 'bottom',
+            html: 'true',
+            title : '<span class="text-info"><strong>title</strong></span>'+
+                    '<button type="button" id="close" class="close" onclick="$(&quot;#example&quot;).popover(&quot;hide&quot;);">&times;</button>',
+            content : 'test'
+    });
+});
+</script>
+
 </head>
 
 <body>
@@ -39,6 +54,8 @@
 <p>
  <%= "&copy; #{Date.today.year} #{t("app.author")}.".html_safe%>
  </p>
+ <button type="button" id="howdoesitwork" class="btn btn-primary">How does it work?</button>
+
 </footer>
 </div>
 </body>
