@@ -1,0 +1,2 @@
+todo list:
+Add column to databases that specify currentness.  Then no longer friends don't need to be removed, just have a flag set.
